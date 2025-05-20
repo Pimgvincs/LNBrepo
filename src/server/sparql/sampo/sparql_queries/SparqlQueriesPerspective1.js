@@ -1,76 +1,231 @@
 const perspectiveID = 'perspective1'
 
-export const workProperties = `
+export const CreativeWorkInstanceProperties = `
     {
-      ?id skos:prefLabel ?prefLabel__id .
-      BIND(?prefLabel__id AS ?prefLabel__prefLabel)
-      BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
-      BIND(?id as ?uri__id)
-      BIND(?id as ?uri__dataProviderUrl)
-      BIND(?id as ?uri__prefLabel)
+      ?id a schema:CreativeWork .
+      BIND(REPLACE(STR(?id), "^.*[/#]([^/#]+)$", "$1") AS ?uri__prefLabel)
+      BIND(CONCAT("/object/page/", REPLACE(STR(?id), "^.*[/#]([^/#]+)$", "$1")) AS ?uri__dataProviderUrl)
     }
     UNION
     {
-      ?id ^mmm-schema:manuscript_work ?manuscript__id .
-      ?manuscript__id skos:prefLabel ?manuscript__prefLabel .
-      BIND(CONCAT("/manuscripts/page/", REPLACE(STR(?manuscript__id), "^.*\\\\/(.+)", "$1")) AS ?manuscript__dataProviderUrl)
+      ?id dc:type ?type__id .
+      OPTIONAL {
+        ?type__id rdfs:label ?typeLabel .
+      }
+      BIND(COALESCE(?typeLabel, REPLACE(STR(?type__id), "^.*[/#]([^/#]+)$", "$1"))  AS ?type__prefLabel)
     }
     UNION
     {
-      ?id  ^mmm-schema:manuscript_work/crm:P46i_forms_part_of ?collection__id .
-      ?collection__id skos:prefLabel ?collection__prefLabel .
-      BIND(CONCAT("/collections/page/", ENCODE_FOR_URI(REPLACE(STR(?collection__id), "^.*\\\\/(.+)", "$1"))) AS ?collection__dataProviderUrl)
+      ?id dct:identifier ?identifier__id .
+      OPTIONAL {
+        ?identifier__id rdfs:label ?identifierLabel .
+      }
+      BIND(COALESCE(?identifierLabel, REPLACE(STR(?identifier__id), "^.*[/#]([^/#]+)$", "$1"))  AS ?identifier__prefLabel)
     }
     UNION
     {
-      ?id ^mmm-schema:manuscript_work/crm:P45_consists_of ?material__id .
-      ?material__id skos:prefLabel ?material__prefLabel .
+      ?id dct:creator ?creator__id .
+      OPTIONAL {
+        ?creator__id rdfs:label ?creatorLabel .
+      }
+      BIND(COALESCE(?creatorLabel, REPLACE(STR(?creator__id), "^.*[/#]([^/#]+)$", "$1"))  AS ?creator__prefLabel)
+      BIND(?creator__id AS ?creator__dataProviderUrl)
+    }
+    UNION
+    {
+      ?id schema:author ?author__id .
+      OPTIONAL {
+        ?author__id rdfs:label ?authorLabel .
+      }
+      BIND(COALESCE(?authorLabel, REPLACE(STR(?author__id), "^.*[/#]([^/#]+)$", "$1"))  AS ?author__prefLabel)
+      BIND(?author__id AS ?author__dataProviderUrl)
+    }
+    UNION
+    {
+      ?id bibo:owner ?owner__id .
+      OPTIONAL {
+        ?owner__id rdfs:label ?ownerLabel .
+      }
+      BIND(COALESCE(?ownerLabel, REPLACE(STR(?owner__id), "^.*[/#]([^/#]+)$", "$1"))  AS ?owner__prefLabel)
+    }
+    UNION
+    {
+      ?id dc:publisher ?publisher__id .
+      OPTIONAL {
+        ?publisher__id rdfs:label ?publisherLabel .
+      }
+      BIND(COALESCE(?publisherLabel, REPLACE(STR(?publisher__id), "^.*[/#]([^/#]+)$", "$1"))  AS ?publisher__prefLabel)
+    }
+    UNION
+    {
+      ?id bibo:place ?place__id .
+      OPTIONAL {
+        ?place__id rdfs:label ?placeLabel .
+      }
+      BIND(COALESCE(?placeLabel, REPLACE(STR(?place__id), "^.*[/#]([^/#]+)$", "$1"))  AS ?place__prefLabel)
+    }
+    UNION
+    {
+      ?id dct:date ?date__id .
+      OPTIONAL {
+        ?date__id rdfs:label ?dateLabel .
+      }
+      BIND(COALESCE(?dateLabel, REPLACE(STR(?date__id), "^.*[/#]([^/#]+)$", "$1"))  AS ?date__prefLabel)
+    }
+    UNION
+    {
+      ?id dct:hasPart ?hasPart__id .
+      OPTIONAL {
+        ?hasPart__id rdfs:label ?hasPartLabel .
+      }
+      BIND(STR(?hasPart__id) AS ?hasPart__prefLabel)
+      BIND(?hasPart__id AS ?hasPart__dataProviderUrl)
+    }
+    UNION
+    {
+      ?id dct:isPartOf ?isPartOf__id .
+      OPTIONAL {
+        ?isPartOf__id rdfs:label ?isPartOfLabel .
+      }
+      BIND(STR(?isPartOf__id) AS ?isPartOf__prefLabel)
+      BIND(?isPartOf__id AS ?isPartOf__dataProviderUrl)
+    }
+    UNION
+    {
+      ?id foaf:page ?page__id .
+      OPTIONAL {
+        ?page__id rdfs:label ?pageLabel .
+      }
+      BIND(STR(?page__id) AS ?page__prefLabel)
+      BIND(?page__id AS ?page__dataProviderUrl)
+    }
+    UNION
+    {
+      ?id dct:language ?language__id .
+      OPTIONAL {
+        ?language__id rdfs:label ?languageLabel .
+        FILTER(LANG(?languageLabel) = 'en')
+      }
+      BIND(COALESCE(?languageLabel, REPLACE(STR(?language__id), "^.*[/#]([^/#]+)$", "$1")) AS ?language__prefLabel)
     }
     UNION
     {
       ?id dct:source ?source__id .
-      ?source__id skos:prefLabel ?source__prefLabel .
-    }
-    UNION
-    {
-      ?id ^frbroo:R16_initiated/(mmm-schema:carried_out_by_as_possible_author|mmm-schema:carried_out_by_as_author) ?author__id .
-      ?author__id skos:prefLabel ?author__prefLabel .
-      BIND(CONCAT("/actors/page/", REPLACE(STR(?author__id), "^.*\\\\/(.+)", "$1")) AS ?author__dataProviderUrl)
-    }
-    UNION
-    {
-      ?id ^frbroo:R19_created_a_realisation_of/frbroo:R17_created ?expression__id .
-      ?expression__id skos:prefLabel ?expression__prefLabel .
       OPTIONAL {
-        ?expression__id crm:P72_has_language ?language__id .
-        ?expression__id dct:source ?language__source__id .
-        ?language__source__id skos:prefLabel ?language__source__prefLabel .
-        ?language__id skos:prefLabel ?language__prefLabel .
+        ?source__id rdfs:label ?sourceLabel .
       }
-      BIND(CONCAT("/expressions/page/", REPLACE(STR(?expression__id), "^.*\\\\/(.+)", "$1")) AS ?expression__dataProviderUrl)
+      BIND(STR(?source__id) AS ?source__prefLabel)
+      BIND(?source__id AS ?source__dataProviderUrl)
     }
     UNION
     {
-      ?id ^mmm-schema:manuscript_work/^crm:P108_has_produced/crm:P4_has_time-span ?productionTimespan__id .
-      ?productionTimespan__id skos:prefLabel ?productionTimespan__prefLabel .
-      ?productionTimespan__id dct:source ?productionTimespan__source__id .
-      ?productionTimespan__source__id skos:prefLabel ?productionTimespan__source__prefLabel .
-      OPTIONAL { ?productionTimespan__id crm:P82a_begin_of_the_begin ?productionTimespan__start }
-      OPTIONAL { ?productionTimespan__id crm:P82b_end_of_the_end ?productionTimespan__end }
+      ?id dct:subject ?subject__id .
+      OPTIONAL {
+        ?subject__id rdfs:label ?subjectLabel .
+      }
+      BIND(COALESCE(?subjectLabel, REPLACE(STR(?subject__id), "^.*[/#]([^/#]+)$", "$1"))  AS ?subject__prefLabel)
     }
-`
-
-export const knowledgeGraphMetadataQuery = `
-  SELECT * 
-  WHERE {
-    ?id a sd:Dataset ;
-        dct:title ?title ;
-        dct:publisher ?publisher ;
-        dct:rightsHolder ?rightsHolder ;
-        dct:modified ?modified ;
-        dct:source ?databaseDump__id .
-    ?databaseDump__id skos:prefLabel ?databaseDump__prefLabel ;
-                      mmm-schema:data_provider_url ?databaseDump__dataProviderUrl ;
-                      dct:modified ?databaseDump__modified .
-  }
+    UNION
+    {
+      ?id dct:title ?title__id .
+      OPTIONAL {
+        ?title__id rdfs:label ?titleLabel .
+      }
+      BIND(COALESCE(?titleLabel, REPLACE(STR(?title__id), "^.*[/#]([^/#]+)$", "$1")) AS ?title__prefLabel)
+    }
+    UNION
+    {
+      ?id schema:name ?name__id .
+      OPTIONAL {
+        ?name__id rdfs:label ?nameLabel .
+      }
+      BIND(COALESCE(?nameLabel, REPLACE(STR(?name__id), "^.*[/#]([^/#]+)$", "$1")) AS ?name__prefLabel)
+    }
+    UNION
+    {
+      ?id bibo:annotates ?annotates__id .
+      OPTIONAL {
+        ?annotates__id dct:title ?annotatesLabel .
+      }
+      BIND(COALESCE(?annotatesLabel, REPLACE(STR(?annotates__id), "^.*[/#]([^/#]+)$", "$1")) AS ?annotates__prefLabel)
+      BIND(REPLACE(STR(?annotates__id), "^.*/([^/]+)/?$", "$1") AS ?idOnly)
+      BIND(CONCAT("/object/page/", REPLACE(STR(?idOnly), "^.*[/#]([^/#]+)$", "$1")) AS ?annotates__dataProviderUrl)
+    }
+    UNION
+    {
+      ?id bibo:recipient ?recipient__id .
+      OPTIONAL {
+        ?recipient__id rdfs:label ?recipientLabel .
+      }
+      BIND(COALESCE(?recipientLabel, REPLACE(STR(?recipient__id), "^.*[/#]([^/#]+)$", "$1"))  AS ?recipient__prefLabel)
+    }
+    UNION
+    {
+      ?id schema:datePublished ?datePublished__id .
+      OPTIONAL {
+        ?datePublished__id rdfs:label ?datePublishedLabel .
+        FILTER(LANG(?datePublishedLabel) = 'en')
+      }
+      BIND(COALESCE(?datePublishedLabel, REPLACE(STR(?datePublished__id), "^.*[/#]([^/#]+)$", "$1")) AS ?datePublished__prefLabel)
+    }
+    UNION
+    {
+      ?id schema:description ?description__id .
+      OPTIONAL {
+        ?description__id rdfs:label ?descriptionLabel .
+        FILTER(LANG(?descriptionLabel) = 'en')
+      }
+      BIND(COALESCE(?descriptionLabel, REPLACE(STR(?description__id), "^.*[/#]([^/#]+)$", "$1")) AS ?description__prefLabel)
+    }
+    UNION
+    {
+      ?id dct:abstract ?abstract__id .
+      OPTIONAL {
+        ?abstract__id rdfs:label ?abstractLabel .
+      }
+      BIND(COALESCE(?abstractLabel, REPLACE(STR(?abstract__id), "^.*[/#]([^/#]+)$", "$1")) AS ?abstract__prefLabel)
+    }
+    UNION
+    {
+      ?id schema:mentions ?mentions__id .
+      OPTIONAL {
+        ?mentions__id schema:name ?mentionsLabel .
+      }
+      BIND(COALESCE(?mentionsLabel, REPLACE(STR(?mentions__id), "^.*[/#]([^/#]+)$", "$1")) AS ?mentions__prefLabel)
+      BIND(REPLACE(STR(?mentions__id), "^.*/([^/]+)/?$", "$1") AS ?idOnly)
+      BIND(CONCAT("/entity/page/", REPLACE(STR(?idOnly), "^.*[/#]([^/#]+)$", "$1")) AS ?mentions__dataProviderUrl)
+    }
+    UNION
+    {
+      ?id dc:references ?references__id .
+      OPTIONAL {
+        ?references__id dct:title ?referencesLabel .
+      }
+      BIND(COALESCE(?referencesLabel, REPLACE(STR(?references__id), "^.*[/#]([^/#]+)$", "$1")) AS ?references__prefLabel)
+      BIND(REPLACE(STR(?references__id), "^.*/([^/]+)/?$", "$1") AS ?idOnly)
+      BIND(CONCAT("/object/page/", REPLACE(STR(?idOnly), "^.*[/#]([^/#]+)$", "$1")) AS ?references__dataProviderUrl)
+    }
+    UNION
+    {
+      ?id schema:sameAs ?sameAs__id .
+      BIND(REPLACE(STR(?sameAs__id), "^.*[/#]([^/#]+)$", "$1") AS ?sameAs__prefLabel)
+      BIND(STR(?sameAs__id) AS ?sameAs__prefLabel)
+      BIND(?sameAs__id AS ?sameAs__dataProviderUrl)
+    }
+    UNION
+    {
+      ?id schema:thumbnailUrl ?thumbnailUrl__id .
+      BIND(REPLACE(STR(?thumbnailUrl__id), "^.*[/#]([^/#]+)$", "$1") AS ?thumbnailUrl__prefLabel)
+      BIND(STR(?thumbnailUrl__id) AS ?thumbnailUrl__prefLabel)
+      BIND(?thumbnailUrl__id AS ?thumbnailUrl__dataProviderUrl)
+    }
+    UNION
+    {
+      ?id rdfs:comment ?comment__id .
+      OPTIONAL {
+        ?comment__id rdfs:label ?commentLabel .
+        FILTER(LANG(?thumbnailUrlLabel) = 'en')
+      }
+      BIND(COALESCE(?commentLabel, REPLACE(STR(?comment__id), "^.*[/#]([^/#]+)$", "$1"))  AS ?comment__prefLabel)
+    }
 `

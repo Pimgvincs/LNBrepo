@@ -9,7 +9,7 @@ export const prefixes = `
   PREFIX text: <http://jena.apache.org/text#>
   PREFIX dct: <http://purl.org/dc/terms/>
   PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
-  PREFIX sch: <http://schema.org/>
+  PREFIX schema: <http://schema.org/>
   PREFIX geosparql: <http://www.opengis.net/ont/geosparql#>
   PREFIX frbroo: <http://erlangen-crm.org/efrbroo/>
   PREFIX mmm-schema: <http://ldf.fi/schema/mmm/>
@@ -17,8 +17,22 @@ export const prefixes = `
   PREFIX wgs84: <http://www.w3.org/2003/01/geo/wgs84_pos#>
   PREFIX spatial: <http://jena.apache.org/spatial#>
   PREFIX sd: <http://www.w3.org/ns/sparql-service-description#>
-  PREFIX foaf: <http://xmlns.com/foaf/0.1/> 
-  PREFIX h-schema: <http://ldf.fi/schema/hellerau/> 
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX bibo: <http://purl.org/ontology/bibo/>
+  PREFIX h-schema: <http://ldf.fi/schema/hellerau/>
   PREFIX gn: <http://www.geonames.org/ontology#>
   PREFIX semparls: <http://ldf.fi/schema/semparl/>
+  PREFIX dbr: <http://dbpedia.org/resource/>
+  PREFIX dbo: <http://dbpedia.org/ontology/>
+  PREFIX voc:   <https://swapi.co/vocabulary/>
+  PREFIX commons: <https://commons.wikimedia.org/wiki/Special:FilePath/>
+  PREFIX dc:    <http://purl.org/dc/elements/1.1/>
+  PREFIX p:     <http://www.wikidata.org/prop/>
+  PREFIX pq:    <http://www.wikidata.org/prop/qualifier/>
+  PREFIX ps:    <http://www.wikidata.org/prop/statement/>
+  PREFIX wd:    <http://www.wikidata.org/entity/>
+  PREFIX wds:   <http://www.wikidata.org/entity/statement/>
+  PREFIX wdt:   <http://www.wikidata.org/prop/direct/>
+  PREFIX wikibase: <http://wikiba.se/ontology#>
+  PREFIX xml:   <http://www.w3.org/XML/1998/namespace>
 `

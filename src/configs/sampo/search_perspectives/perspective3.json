@@ -1,244 +1,368 @@
 {
-    "id": "perspective3",
-    "endpoint": {
-        "url": "https://ldf.fi/mmm/sparql",
-        "useAuth": false,
-        "prefixesFile": "SparqlQueriesPrefixes.js"
-    },
-    "sparqlQueriesFile": "SparqlQueriesPerspective3.js",
-    "baseURI": "http://ldf.fi/mmm",
-    "URITemplate": "<BASE_URI>/event/<LOCAL_ID>",
-    "facetClass": "crm:E10_Transfer_of_Custody crm:E12_Production mmm-schema:ManuscriptActivity",
-    "frontPageImage": "main_page/events-452x262.jpg",
-    "searchMode": "faceted-search",
-    "enableDynamicLanguageChange": false,
-    "defaultActiveFacets": [],
-    "defaultTab": "table",
-    "defaultInstancePageTab": "table",
-    "resultClasses": {
-        "perspective3": {
-            "paginatedResultsConfig": {
-                "tabID": 0,
-                "component": "ResultTable",
-                "tabPath": "table",
-                "tabIcon": "CalendarViewDay",
-                "propertiesQueryBlock": "eventProperties",
-                "paginatedResultsAlwaysExpandRows": false,
-                "paginatedResultsRowContentMaxHeight": 190,
-                "pagesize": 10,
-                "sortBy": null,
-                "sortDirection": null
-            },
-            "instanceConfig": {
-                "propertiesQueryBlock": "eventProperties",
-                "instancePageResultClasses": {
-                    "instancePageTable": {
-                        "tabID": 0,
-                        "component": "InstancePageTable",
-                        "tabPath": "table",
-                        "tabIcon": "CalendarViewDay"
-                    },
-                    "instancePageExport": {
-                        "tabID": 1,
-                        "component": "Export",
-                        "tabPath": "export",
-                        "tabIcon": "CloudDownload",
-                        "pageType": "instancePage"
-                    }
-                }
-            }
-        },
-        "placesEvents": {
-            "tabID": 1,
-            "component": "LeafletMap",
-            "tabPath": "map",
-            "tabIcon": "AddLocation",
-            "sparqlQuery": "eventPlacesQuery",
-            "facetClass": "perspective3",
-            "filterTarget": "event",
-            "resultMapper": "mapPlaces",
-            "instanceConfig": {
-                "propertiesQueryBlock": "placePropertiesInfoWindow"
-            }
-        }
-    },
-    "maps": {
-        "placesEvents": {
-            "center": [
-                22.43,
-                10.37
-            ],
-            "zoom": 2
-        }
-    },
-    "properties": [
-        {
-            "id": "uri",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": true,
-            "sortValues": true,
-            "numberedList": false,
-            "onlyOnInstancePage": true
-        },
-        {
-            "id": "type",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": false,
-            "sortValues": false,
-            "numberedList": false,
-            "minWidth": 200
-        },
-        {
-            "id": "manuscript",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": false,
-            "sortValues": false,
-            "numberedList": false,
-            "minWidth": 200
-        },
-        {
-            "id": "eventTimespan",
-            "valueType": "object",
-            "makeLink": false,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 200
-        },
-        {
-            "id": "place",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 250
-        },
-        {
-            "id": "surrender",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 250,
-            "onlyOnInstancePage": true,
-            "onlyForClass": "http://erlangen-crm.org/current/E10_Transfer_of_Custody"
-        },
-        {
-            "id": "receiver",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 250,
-            "onlyOnInstancePage": true,
-            "onlyForClass": "http://erlangen-crm.org/current/E10_Transfer_of_Custody"
-        },
-        {
-            "id": "observedOwner",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 250,
-            "onlyOnInstancePage": true,
-            "onlyForClass": "http://erlangen-crm.org/current/E7_Activity"
-        },
-        {
-            "id": "note",
-            "valueType": "string",
-            "makeLink": false,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 250,
-            "collapsedMaxWords": 12,
-            "onlyOnInstancePage": true
-        },
-        {
-            "id": "source",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": true,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 200
-        }
-    ],
-    "facets": {
-        "type": {
-            "containerClass": "three",
-            "facetLabelPredicate": "skos:prefLabel|rdfs:label",
-            "facetType": "list",
-            "facetValueFilter": "FILTER(?id NOT IN ( <http://ldf.fi/mmm/schema/PlaceNationality> ))",
-            "filterType": "uriFilter",
-            "predicate": "a",
-            "sortBy": "prefLabel",
-            "sortByPredicate": "a/(skos:prefLabel|rdfs:label)",
-            "sortDirection": "asc",
-            "uriFilter": null
-        },
-        "manuscript": {
-            "containerClass": "one",
-            "facetType": "text",
-            "filterType": "textFilter",
-            "sortByPredicate": "(crm:P30_transferred_custody_of |crm:P108_has_produced |mmm-schema:observed_manuscript )/skos:prefLabel",
-            "textQueryPredicate": "(crm:P30_transferred_custody_of |crm:P108_has_produced |mmm-schema:observed_manuscript)",
-            "textQueryProperty": "skos:prefLabel"
-        },
-        "eventTimespan": {
+  "id": "perspective3",
+  "endpoint": {
+      "url": "http://localhost:7200/repositories/LNBrepo",
+      "useAuth": false,
+      "defaultGraph": "http://swapi.co/resource/",
+      "prefixesFile": "SparqlQueriesPrefixes.js"
+  },
+  "sparqlQueriesFile": "SparqlQueriesPerspective3.js",
+  "baseURI": "",
+  "URITemplate": "<BASE_URI>/Document/<LOCAL_ID>",
+  "facetClass": "bibo:Document",
+  "frontPageImage": "main_page/Documents.jpg",
+  "searchMode": "faceted-search",
+  "enableDynamicLanguageChange": false,
+  "defaultActiveFacets": [
+      "prefLabel"
+  ],
+  "defaultTab": "table",
+  "defaultInstancePageTab": "table",
+  "resultClasses": {
+      "perspective3": {
+          "paginatedResultsConfig": {
+              "tabID": 0,
+              "component": "ResultTable",
+              "tabPath": "table",
+              "tabIcon": "CalendarViewDay",
+              "propertiesQueryBlock": "DocumentInstanceProperties",
+              "pagesize": 10,
+              "sortBy": null,
+              "sortDirection": null
+          },
+          "instanceConfig": {
+              "propertiesQueryBlock": "DocumentInstanceProperties",
+              "instancePageResultClasses": {
+                  "instancePageTable": {
+                      "tabID": 0,
+                      "component": "InstancePageTable",
+                      "tabPath": "table",
+                      "tabIcon": "CalendarViewDay"
+                  }
+              }
+          }
+      }
+  },
+  "properties": [
+      {
+          "id": "uri",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": true,
+          "sortValues": true,
+          "numberedList": false,
+          "onlyOnInstancePage": true
+      },
+      {
+          "id": "type",
+          "valueType": "object",
+          "makeLink": false,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 250
+      },
+      {
+          "id": "creator",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": true,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 150
+      },
+      {
+          "id": "date",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 150
+      },
+      {
+          "id": "hasPart",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": true,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 250
+      },
+      {
+          "id": "isPartOf",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": true,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 250
+      },
+      {
+          "id": "language",
+          "valueType": "object",
+          "makeLink": false,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 250
+      },
+      {
+          "id": "source",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": true,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 200
+      },
+      {
+          "id": "subject",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 200
+      },
+      {
+          "id": "title",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 200
+      },
+      {
+          "id": "annotates",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 200
+      },
+      {
+          "id": "author",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": true,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 200
+      },
+      {
+          "id": "datePublished",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 200
+      },
+      {
+          "id": "description",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 200
+      },
+      {
+          "id": "mentions",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 200
+      },
+      {
+          "id": "sameAs",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": true,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 200
+      },
+      {
+          "id": "thumbnailUrl",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": true,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 200
+      }
+  ],
+  "facets": {
+      "type": {
             "containerClass": "four",
-            "endProperty": "crm:P82b_end_of_the_end",
-            "facetType": "timespan",
-            "filterType": "timespanFilter",
-            "max": null,
-            "min": null,
-            "predicate": "crm:P4_has_time-span",
-            "sortByAscPredicate": "crm:P4_has_time-span/crm:P82a_begin_of_the_begin",
-            "sortByDescPredicate": "crm:P4_has_time-span/crm:P82b_end_of_the_end",
-            "startProperty": "crm:P82a_begin_of_the_begin"
-        },
-        "place": {
-            "containerClass": "ten",
-            "facetType": "hierarchical",
-            "facetValueFilter": "?id dct:source <http://vocab.getty.edu/tgn/> .",
-            "filterType": "uriFilter",
-            "parentProperty": "gvp:broaderPreferred",
-            "predicate": "crm:P7_took_place_at",
-            "searchField": true,
-            "selectAlsoSubconcepts": true,
-            "selectAlsoSubconceptsButton": true,
-            "sortByPredicate": "crm:P7_took_place_at/skos:prefLabel",
-            "type": "hierarchical"
-        },
-        "placeType": {
-            "containerClass": "ten",
-            "facetType": "list",
-            "filterType": "uriFilter",
-            "literal": true,
-            "pieChartButton": true,
-            "predicate": "crm:P7_took_place_at/gvp:placeTypePreferred",
+            "predicate": "dc:type",
             "searchField": true,
             "sortButton": true,
             "sortBy": "instanceCount",
-            "sortByPredicate": "crm:P7_took_place_at/gvp:placeTypePreferred",
+            "sortByPredicate": "?prefLabel_",
             "sortDirection": "desc"
         },
-        "source": {
-            "containerClass": "three",
+        "creator": {
+            "containerClass": "four",
             "facetType": "list",
             "filterType": "uriFilter",
-            "pieChartButton": true,
-            "predicate": "dct:source",
+            "facetLabelPredicate": "rdfs:label",
+            "predicate": "dct:creator",
+            "searchField": true,
+            "sortButton": true,
             "sortBy": "instanceCount",
-            "sortByPredicate": "dct:source/skos:prefLabel",
+            "sortByPredicate": "?prefLabel_",
+            "sortDirection": "desc",
+            "barChartButton": true
+        },
+        "date": {
+            "containerClass": "four",
+            "predicate": "dct:date",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "instanceCount",
+            "sortByPredicate": "?prefLabel_",
             "sortDirection": "desc"
-        }
-    }
+        },
+        "hasPart": {
+            "containerClass": "four",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "instanceCount",
+            "sortByPredicate": "?prefLabel_",
+            "sortDirection": "desc"
+        },
+        "isPartOf": {
+            "containerClass": "four",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "instanceCount",
+            "sortByPredicate": "?prefLabel_",
+            "sortDirection": "desc"
+        },
+        "language": {
+            "containerClass": "four",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "facetLabelPredicate": "rdfs:label",
+            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = 'en')",
+            "predicate": "dct:language",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "instanceCount",
+            "sortByPredicate": "?prefLabel_",
+            "sortDirection": "desc",
+            "barChartButton": true
+        },
+        "source": {
+            "containerClass": "four",
+            "predicate": "dct:source",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "instanceCount",
+            "sortByPredicate": "?prefLabel_",
+            "sortDirection": "desc"
+        },
+        "subject": {
+            "containerClass": "four",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "facetLabelPredicate": "rdfs:label",
+            "predicate": "dct:subject",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "instanceCount",
+            "sortByPredicate": "?prefLabel_",
+            "sortDirection": "desc",
+            "pieChartButton": true
+        },
+        "title": {
+            "containerClass": "four",
+            "predicate": "dct:title",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "instanceCount",
+            "sortByPredicate": "?prefLabel_",
+            "sortDirection": "desc"
+        },
+        "annotates": {
+            "containerClass": "four",
+            "predicate": "bibo:annotates",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "instanceCount",
+            "sortByPredicate": "?prefLabel_",
+            "sortDirection": "desc"
+        },
+        "author": {
+            "containerClass": "four",
+            "facetType": "list",
+            "filterType": "uriFilter",
+            "facetLabelPredicate": "rdfs:label",
+            "predicate": "schema:author",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "instanceCount",
+            "sortByPredicate": "?prefLabel_",
+            "sortDirection": "desc",
+            "barChartButton": true
+        },
+        "datePublished": {
+            "containerClass": "four",
+            "predicate": "schema:datePublished",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "instanceCount",
+            "sortByPredicate": "?prefLabel_",
+            "sortDirection": "desc"
+        },
+        "description": {
+            "containerClass": "four",
+            "predicate": "schema:description",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "instanceCount",
+            "sortByPredicate": "?prefLabel_",
+            "sortDirection": "desc"
+        },
+        "mentions": {
+            "containerClass": "four",
+            "predicate": "schema:mentions",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "instanceCount",
+            "sortByPredicate": "?prefLabel_",
+            "sortDirection": "desc"
+        },
+        "sameAs": {
+            "containerClass": "four",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "instanceCount",
+            "sortByPredicate": "?prefLabel_",
+            "sortDirection": "desc"
+        },
+        "thumbnailUrl": {
+            "containerClass": "four",
+            "searchField": true,
+            "sortButton": true,
+            "sortBy": "instanceCount",
+            "sortByPredicate": "?prefLabel_",
+            "sortDirection": "desc"
+        },
+        "depiction": {
+          "containerClass": "four",
+          "searchField": true,
+          "sortButton": true,
+          "sortBy": "instanceCount",
+          "sortByPredicate": "?prefLabel_",
+          "sortDirection": "desc"
+      }
+  }
 }

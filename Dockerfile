@@ -23,7 +23,7 @@ COPY src ./src
 RUN npm install && \ 
 API_URL=$API_URL MAPBOX_ACCESS_TOKEN=$MAPBOX_ACCESS_TOKEN npm run build
 
-EXPOSE 3001
+EXPOSE 3002
 
 # https://github.com/nodejs/docker-node/blob/main/docs/BestPractices.md#non-root-user
 USER node

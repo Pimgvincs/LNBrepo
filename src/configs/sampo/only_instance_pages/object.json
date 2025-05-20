@@ -1,0 +1,229 @@
+{
+  "id": "object",
+  "endpoint": {
+    "url": "http://localhost:7200/repositories/LNBrepo",
+    "useAuth": false,
+    "defaultGraph": "https://swapi.co/resource/",
+    "prefixesFile": "SparqlQueriesPrefixes.js"
+  },
+  "sparqlQueriesFile": "SparqlQueriesPerspective1.js",
+  "baseURI": "http://runa.lnb.lv",
+  "URITemplate": "<BASE_URI>/objects/<LOCAL_ID>/",
+  "facetClass": "schema:CreativeWork",
+  "resultClasses": {
+    "object": {
+      "instanceConfig": {
+        "propertiesQueryBlock": "CreativeWorkInstanceProperties",
+        "instancePageResultClasses": {
+          "instancePageTable": {
+            "tabID": 0,
+            "component": "InstancePageTable",
+            "tabPath": "table",
+            "tabIcon": "CalendarViewDay"
+          }
+        }
+      }
+    }
+  },
+  "properties": [
+      {
+          "id": "title",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 200
+      },
+      {
+          "id": "creator",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": true,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 150
+      },
+      {
+          "id": "author",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": true,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 150
+      },
+      {
+          "id": "publisher",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 150
+      },
+      {
+          "id": "place",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 150
+      },
+      {
+          "id": "date",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 150
+      },
+      {
+          "id": "datePublished",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 200
+      },
+      {
+          "id": "type",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 250
+      },
+      {
+          "id": "abstract",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 200
+      },
+      {
+          "id": "description",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 200
+      },
+      {
+          "id": "isPartOf",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": true,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 250
+      },
+      {
+          "id": "source",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": true,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 200
+      },
+      {
+          "id": "references",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 200
+      },
+      {
+          "id": "annotates",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 200
+      },
+      {
+          "id": "hasPart",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": true,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 250
+      },
+      {
+          "id": "mentions",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 200
+      },
+      {
+          "id": "subject",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": true,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 200
+      },
+      {
+          "id": "recipient",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 200,
+          "property": "prefLabel_"
+      },
+      {
+          "id": "owner",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 150
+      },
+      {
+          "id": "thumbnailUrl",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": true,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 200
+      },
+      {
+          "id": "sameAs",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": true,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 200
+      },
+      {
+          "id": "language",
+          "valueType": "object",
+          "makeLink": false,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 250
+      }
+  ]
+}

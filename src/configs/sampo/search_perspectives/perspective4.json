@@ -1,134 +1,153 @@
 {
-    "id": "perspective4",
-    "sparqlQueriesFile": "SparqlQueriesPerspective4.js",
-    "sparqlQueries": "federatedSearchSparqlQueries",
-    "frontPageImage": "main_page/places-452x262.jpg",
-    "searchMode": "federated-search",
-    "enableDynamicLanguageChange": false,
-    "defaultActiveFacets": [
-        "datasetSelector"
-    ],
-    "feredatedResultsConfig": {
-        "sortBy": "broaderAreaLabel",
-        "sortDirection": "asc",
-        "groupBy": "broaderTypeLabel",
-        "groupByLabel": "Paikanlaji"
-    },
-    "resultClasses": {
-        "table": {
-            "tabID": 0,
-            "tabPath": "table",
-            "tabIcon": "CalendarViewDay"
-        },
-        "mapClusters": {
-            "tabID": 1,
-            "tabPath": "map_clusters",
-            "tabIcon": "TripOrigin"
-        },
-        "mapMarkers": {
-            "tabID": 2,
-            "tabPath": "map_markers",
-            "tabIcon": "LocationOn"
-        },
-        "statistics": {
-            "tabID": 3,
-            "tabPath": "statistics",
-            "tabIcon": "PieChart"
-        },
-        "download": {
-            "tabID": 4,
-            "tabPath": "download",
-            "tabIcon": "CloudDownload"
-        },
-        "boundingboxSearch": {}
-    },
-    "datasets": {
-        "kotus": {
-            "endpoint": "https://ldf.fi/kotus-names-archive/sparql",
-            "selected": true
-        },
-        "pnr": {
-            "endpoint": "https://ldf.fi/pnr-keyword-index/sparql",
-            "selected": true
-        },
-        "warsa_karelian_places": {
-            "endpoint": "https://ldf.fi/warsa/sparql",
-            "selected": false
-        },
-        "tgn": {
-            "endpoint": "https://vocab.getty.edu/sparql.json",
-            "selected": false
-        }
-    },
-    "maps": {
-        "boundingboxSearch": {
-            "center": [
-                65.184809,
-                27.31405
-            ],
-            "zoom": 5
-        },
-        "mapClusters": {
-            "center": [
-                65.184809,
-                27.31405
-            ],
-            "zoom": 5
-        },
-        "mapMarkers": {
-            "center": [
-                65.184809,
-                27.31405
-            ],
-            "zoom": 5
-        }
-    },
-    "facets": {
-        "datasetSelector": {
-            "filterType": "datasetSelector",
-            "containerClass": "six"
-        },
-        "prefLabel": {
-            "filterType": "clientFSLiteral",
-            "searchField": true,
-            "containerClass": "ten",
-            "facetType": "list"
-        },
-        "broaderTypeLabel": {
-            "filterType": "clientFSLiteral",
-            "searchField": true,
-            "containerClass": "ten",
-            "facetType": "list"
-        },
-        "broaderAreaLabel": {
-            "filterType": "clientFSLiteral",
-            "searchField": true,
-            "containerClass": "ten",
-            "facetType": "list"
-        },
-        "modifier": {
-            "filterType": "clientFSLiteral",
-            "searchField": true,
-            "containerClass": "ten",
-            "facetType": "list"
-        },
-        "basicElement": {
-            "filterType": "clientFSLiteral",
-            "searchField": true,
-            "containerClass": "ten",
-            "facetType": "list"
-        },
-        "collectionYear": {
-            "filterType": "clientFSLiteral",
-            "searchField": true,
-            "containerClass": "ten",
-            "facetType": "list"
-        },
-        "source": {
-            "filterType": "clientFSLiteral",
-            "searchField": false,
-            "containerClass": "three",
-            "facetType": "list"
-        }
-    }
+  "id": "perspective4",
+  "endpoint": {
+      "url": "http://localhost:7200/repositories/LNBrepo",
+      "useAuth": false,
+      "defaultGraph": "http://swapi.co/resource/",
+      "prefixesFile": "SparqlQueriesPrefixes.js"
+  },
+  "sparqlQueriesFile": "SparqlQueriesPerspective4.js",
+  "baseURI": "",
+  "URITemplate": "<BASE_URI>/Person/<LOCAL_ID>",
+  "facetClass": "schema:Person",
+  "frontPageImage": "main_page/Persons.jpg",
+  "searchMode": "faceted-search",
+  "enableDynamicLanguageChange": false,
+  "defaultActiveFacets": [
+      "prefLabel"
+  ],
+  "defaultTab": "table",
+  "defaultInstancePageTab": "table",
+  "resultClasses": {
+      "perspective4": {
+          "paginatedResultsConfig": {
+              "tabID": 0,
+              "component": "ResultTable",
+              "tabPath": "table",
+              "tabIcon": "CalendarViewDay",
+              "propertiesQueryBlock": "ImageInstanceProperties",
+              "pagesize": 10,
+              "sortBy": null,
+              "sortDirection": null
+          },
+          "instanceConfig": {
+              "propertiesQueryBlock": "ImageInstanceProperties",
+              "instancePageResultClasses": {
+                  "instancePageTable": {
+                      "tabID": 0,
+                      "component": "InstancePageTable",
+                      "tabPath": "table",
+                      "tabIcon": "CalendarViewDay"
+                  }
+              }
+          }
+      }
+  },
+  "properties": [
+      {
+          "id": "uri",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": true,
+          "sortValues": true,
+          "numberedList": false,
+          "onlyOnInstancePage": true
+      },
+      {
+          "id": "type",
+          "valueType": "object",
+          "makeLink": false,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 250
+      },
+      {
+          "id": "identifier",
+          "valueType": "object",
+          "makeLink": false,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 250
+      },
+      {
+          "id": "mentions",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 150
+      },
+      {
+          "id": "name",
+          "valueType": "object",
+          "makeLink": false,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 150
+      },
+      {
+          "id": "sameAs",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": true,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 250
+      }
+  ],
+  "facets": {
+      "type": {
+          "containerClass": "four",
+          "predicate": "dc:type",
+          "searchField": true,
+          "sortButton": true,
+          "sortBy": "instanceCount",
+          "sortByPredicate": "?prefLabel_",
+          "sortDirection": "desc"
+      },
+      "identifier": {
+          "containerClass": "four",
+          "predicate": "dct:identifier",
+          "searchField": true,
+          "sortButton": true,
+          "sortBy": "instanceCount",
+          "sortByPredicate": "?prefLabel_",
+          "sortDirection": "desc"
+      },
+      "mentions": {
+          "containerClass": "four",
+          "facetType": "list",
+          "filterType": "uriFilter",
+          "facetLabelPredicate": "dct:title",
+          "predicate": "schema:mentions",
+          "searchField": true,
+          "sortButton": true,
+          "sortBy": "instanceCount",
+          "sortByPredicate": "?prefLabel_",
+          "sortDirection": "desc",
+          "pieChartButton": true
+      },
+      "name": {
+          "containerClass": "four",
+          "predicate": "schema:name",
+          "searchField": true,
+          "sortButton": true,
+          "sortBy": "instanceCount",
+          "sortByPredicate": "?prefLabel_",
+          "sortDirection": "desc"
+      },
+      "sameAs": {
+          "containerClass": "four",
+          "predicate": "schema:sameAs",
+          "searchField": true,
+          "sortButton": true,
+          "sortBy": "instanceCount",
+          "sortByPredicate": "?prefLabel_",
+          "sortDirection": "desc"
+      }
+  }
 }

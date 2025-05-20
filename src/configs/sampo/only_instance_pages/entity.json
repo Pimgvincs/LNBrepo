@@ -1,0 +1,84 @@
+{
+  "id": "entity",
+  "endpoint": {
+    "url": "http://localhost:7200/repositories/LNBrepo",
+    "useAuth": false,
+    "defaultGraph": "https://swapi.co/resource/",
+    "prefixesFile": "SparqlQueriesPrefixes.js"
+  },
+  "sparqlQueriesFile": "SparqlQueriesEntities.js",
+  "baseURI": "http://runa.lnb.lv",
+  "URITemplate": "<BASE_URI>/entities/<LOCAL_ID>/",
+  "facetClass": "schema:CreativeWork",
+  "resultClasses": {
+    "entity": {
+      "instanceConfig": {
+        "propertiesQueryBlock": "EntityInstanceProperties",
+        "instancePageResultClasses": {
+          "instancePageTable": {
+            "tabID": 0,
+            "component": "InstancePageTable",
+            "tabPath": "table",
+            "tabIcon": "CalendarViewDay"
+          }
+        }
+      }
+    }
+  },
+  "properties": [
+      {
+          "id": "name",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 200
+      },
+      {
+          "id": "type",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 250
+      },
+      {
+          "id": "identifier",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 250
+      },
+      {
+          "id": "mentions",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": false,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 200
+      },
+      {
+          "id": "sameAs",
+          "valueType": "object",
+          "makeLink": true,
+          "externalLink": true,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 200
+      },
+      {
+          "id": "comment",
+          "valueType": "object",
+          "makeLink": false,
+          "externalLink": true,
+          "sortValues": true,
+          "numberedList": false,
+          "minWidth": 200
+      }
+  ]
+}

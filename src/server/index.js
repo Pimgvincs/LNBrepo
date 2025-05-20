@@ -22,7 +22,7 @@ import yaml from 'js-yaml'
 import querystring from 'querystring'
 
 createBackendSearchConfig().then(backendSearchConfig => {
-  const DEFAULT_PORT = 3001
+  const DEFAULT_PORT = 3002
   const app = express()
   app.set('port', process.env.SAMPO_UI_EXPRESS_PORT || DEFAULT_PORT)
   app.use(bodyParser.json())

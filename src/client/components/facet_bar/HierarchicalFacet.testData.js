@@ -10360,7 +10360,7 @@ export const productionPlace = {
                       totalInstanceCount: 1
                     },
                     {
-                      id: 'http://ldf.fi/mmm/place/tgn_7003001',
+                      id: 'http://ldf.fi/mmm/place/tgn_7003002',
                       prefLabel: 'Teramo',
                       selected: 'false',
                       parent: 'http://ldf.fi/mmm/place/tgn_7009084',
@@ -10370,7 +10370,7 @@ export const productionPlace = {
                           id: 'http://ldf.fi/mmm/place/tgn_7046005',
                           prefLabel: 'Castagneto',
                           selected: 'false',
-                          parent: 'http://ldf.fi/mmm/place/tgn_7003001',
+                          parent: 'http://ldf.fi/mmm/place/tgn_7003002',
                           instanceCount: '1',
                           totalInstanceCount: 1
                         }
@@ -24833,7 +24833,7 @@ export const productionPlace = {
       instanceCount: '3'
     },
     {
-      id: 'http://ldf.fi/mmm/place/tgn_7003001',
+      id: 'http://ldf.fi/mmm/place/tgn_7003002',
       prefLabel: 'Teramo',
       selected: 'false',
       parent: 'http://ldf.fi/mmm/place/tgn_7009084',
@@ -26229,7 +26229,7 @@ export const productionPlace = {
       id: 'http://ldf.fi/mmm/place/tgn_7046005',
       prefLabel: 'Castagneto',
       selected: 'false',
-      parent: 'http://ldf.fi/mmm/place/tgn_7003001',
+      parent: 'http://ldf.fi/mmm/place/tgn_7003002',
       instanceCount: '1'
     },
     {

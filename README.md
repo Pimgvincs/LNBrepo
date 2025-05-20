@@ -68,17 +68,17 @@ The build argument API_URL must be provided.
  `docker build --build-arg API_URL=http://localhost:3006/api/v1 -t sampo-web-app-image .`
 
 ### Run
- `docker run -d -p 3006:3001 --name sampo-web-app sampo-web-app-image`
+ `docker run -d -p 3006:3002 --name sampo-web-app sampo-web-app-image`
 
 ### Run with password protected endpoint
- `docker run -d -p 3006:3001 -e SPARQL_ENDPOINT_BASIC_AUTH=your_password --name sampo-web-app sampo-web-app-image`
+ `docker run -d -p 3006:3002 -e SPARQL_ENDPOINT_BASIC_AUTH=your_password --name sampo-web-app sampo-web-app-image`
 
 ### Upgrade
 ```
 docker build --build-arg API_URL=http://localhost:3006/api/v1 -t sampo-web-app-image .
 docker stop sampo-web-app
 docker rm sampo-web-app
-docker run -d -p 3006:3001 --name sampo-web-app sampo-web-app-image
+docker run -d -p 3006:3002 --name sampo-web-app sampo-web-app-image
 ```
 
 ## Developer guide
